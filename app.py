@@ -10,7 +10,7 @@ df = df.dropna(axis=0, how='all').reset_index()
 
 @app.route("/")
 def home_page():
-    return render_template('listing.html', results=df.to_dict(orient='records'), heading = 'All Experiences')
+    return render_template('listing.html', results=df.to_dict(orient='records'), heading='All Experiences')
 
 @app.route("/search")
 def search_companies():
