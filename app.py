@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 import pandas as pd
 
 app = Flask(__name__)
@@ -15,6 +15,8 @@ def home_page():
 @app.route("/search")
 def search_companies():
     name = request.args.get('name')
+    if name is None:
+        return redirect(url_for('home_page'))
     return render_template('listing.html', results=df.loc[df["Placed Company name"].str.contains(name, False)].to_dict(orient='records'), heading = 'Search Results: ' + name)
 
 @app.route("/experience/<index>")
