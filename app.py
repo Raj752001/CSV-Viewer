@@ -10,10 +10,12 @@ df = df.dropna(axis=0, how='all').reset_index()
 
 @app.route("/")
 def home_page():
+    '''List of all experiences'''
     return render_template('listing.html', results=df.to_dict(orient='records'), heading='All Experiences')
 
 @app.route("/search")
 def search_companies():
+    '''Gets the list of experiences according to searched company name'''
     name = request.args.get('name')
     if name is None:
         return redirect(url_for('home_page'))
@@ -21,6 +23,7 @@ def search_companies():
 
 @app.route("/experience/<index>")
 def view_experience(index):
+    '''A view to show a single experience in detail'''
     return render_template('experience.html', result=df.iloc[int(index), 2:].to_dict())
 
 if __name__ == "__main__":
