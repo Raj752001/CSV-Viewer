@@ -5,15 +5,13 @@
 {% endblock %}
 
 {% block body %}
-    <h1>Search Results</h1>
-    <!--LOOP THROUGH DICTIONARY-->
     <div class="card">
         {% for key, value in result.items()%}
             <div class="card-header">
                 <h5>{{key}}</h5>
             </div>
             <div class="card-body">
-                <pre class="card-title">{{value|safe}}</pre>
+                <pre class="card-title" style="white-space: pre-wrap;">{{value|safe}}</pre>
             </div>
         {% endfor %}
     </div>
